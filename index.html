@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+        <script src="dist/jquery.countdown.js"></script>
+    </head>
+    <body>
+        <!--example 1-->
+        <div id="getting-started"></div>
+        <!--example 2 -->
+        <br/>
+        <div class="countdown">
+            <span id="clock"></span>
+        </div>
+        <!--example 3 -->
+        <br/>
+        <div data-countdown="2025/03/05 12:10:10"></div>
+        <div data-countdown="2025/04/01 01:50:22"></div>
+        <div data-countdown="2025/02/01 23:40:27"></div>
+        <div data-countdown="2025/02/02 13:05:35"></div>
+        <!--example 2 -->
+        <br/>
+        <!--example 2 -->
+        <br/>
+        <!--example 2 -->
+        <br/>
+        <!--example 2 -->
+        <br/>
+        <!--example 2 -->
+<script type="text/javascript">
+<!--example 1 -->
+$('#getting-started').countdown('2025-05-04', function (event) {
+                    $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+        });
+        
+        //2
+        $('#clock').countdown('2025/03/15 00:00:05').on('update.countdown', function (event) {
+                    var format = '%H:%M:%S';
+            if (event.offset.totalDays > 0) {
+            format = '%-d day%!d ' + format;
+        }
+        if (event.offset.weeks > 0) {
+                    format = '%-w week%!w ' + format;
+            }
+            $(this).html(event.strftime(format));
+            })
+        .on('finish.countdown', function (event) {
+                    $(this).html('This offer has expired!')
+                    .parent().addClass('disabled');
+        });
+        // example 3
+        $('[data-countdown]').each(function() {
+                    var $this = $(this), finalDate = $(this).data('countdown');
+            $this.countdown(finalDate, function(event) {
+            $this.html(event.strftime('%D days %H:%M:%S'));
+  }).on('finish.countdown', function (event) {
+                    $(this).html('This offer has expired!')
+                    .parent().addClass('disabled');
+        });;
+});
+        </script>
+    </body>
+</html>
+
+
+//<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<script src="<?php echo base_url("public_assets/") ?>js/jQuery.countdown/dist/jquery.countdown.js"></script>
